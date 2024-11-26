@@ -1,0 +1,93 @@
+# Todo list for bots
+
+Please read `CONTRIBUTORS.MD` first, thanks ✨!
+
+## Command List
+
+(why not arabic commands)
+
+- #priv, #private, #dm, #DM:
+  - sends a private message to the user
+  - the message is his information and will have buttons to edit, update, whatever..
+- #points
+  - sends the number of points in arabic
+- #profile, #id, #me
+  - sends a summary about the user
+- #leader, #leaderboard, #top
+  - sends the points leaderboard
+
+Only on private:
+
+- #update
+  - follows up with a message, what do you want to update, then updates
+- #chpass, #cpas, #change_password
+  - two options, directly change the pass, or verify that the user is himself, maybe by sending a token to an admin then the admin will verify if he's him or not, and give him the token...
+- #handle
+  - this command will return a message with two buttons, reset and change the handle
+  - handles are automatically setted if there's a username in telegram
+
+## Feats
+
+The first version of the bot must have:
+
+- most basic profile (without the password)
+- points system
+
+### Initial Features
+
+- [ ]  Define commands: Use `#` for commands but ensure they don’t conflict with hashtags in group messages.
+- [ ]  Name the bot: Assign a funny and unique name (must not start with "ABU").
+
+### Profiling Users
+
+- [ ]  Users may specify the language they want to use with the bot (ar/en)
+- [ ]  Create profiles: Automatically generate a profile for every member in the group.
+- [ ]  Populate profiles: Include fields like name, phone, email, age, bio, and other fillable data. (every possible collectable BIT of info)
+- [ ]  Allow profile updates: Enable users to update their profile data via private messages with the bot.
+- [ ]  Add password field: Include a password field in profiles for potential future use.
+- [ ]  Implement points system: Track points for each user.
+- [ ]  Increment message points: Add +1 point for every message a user sends.
+- [ ]  Reward solutions: Add +5 or +10 points when a user provides a valid solution.
+- [ ]  Detect solutions: Implement a feature to recognize solutions via a reply using `#solution`.
+- [ ]  Allow admin actions: Enable admins to manually add points to users.
+- [ ]  Promote users: Automatically promote users to admin when they reach a specified point threshold.
+- [ ]  Sync existing messages: Calculate and add points for all past messages in the database. (maybe manually)
+
+### Referral System
+
+- [ ] implement a referred by and referredMembers data.
+- [ ] make a url redirector on the same app that updates those data
+- [ ] use telegram join url (dunno how)
+- [ ] on each join, ask the joined one to mention the refferd
+- [ ] it's unchangeable
+
+### Interact with GroupHelp
+
+**NOTE**: there are no public API for group help, neither the Libre one is full. So we might just send a message using the bot as a command to groupHelp to do whatever we want. And maybe this message is in the private between the two bots.
+
+- [ ]  Command GroupHelp: Send messages as commands from the bot to GroupHelp for desired actions.
+- [ ]  Use private messaging: Communicate with GroupHelp in private chats to execute bot commands.
+
+### Leaderboard
+
+- [ ]  Create leaderboard: Develop a customizable leaderboard structure.
+- [ ]  Add main leaderboard: Set up the primary leaderboard based on user points.
+- [ ]  Display leaderboard: Implement a command to show the leaderboard with the top 10 users.
+
+### Additional Commands
+
+- [ ]  Reset points: Enable admins to reset points for specific users or all users.
+- [ ]  Export profiles: Create a command for admins to export user profiles to a file.
+- [ ]  Import profiles: Allow importing profiles into the database for batch updates.
+- [ ]  Send private warnings: Enable admins to privately warn users about inappropriate behavior.
+- [ ]  Notify promotions: Notify users via private messages when they are promoted to admin.
+- [ ]  Archive leaderboard: Periodically save leaderboards for historical tracking.
+
+## Handling Errors
+
+- Handle: GrammyError: Call to 'sendMessage' failed! (429: Too Many Requests: retry after 5)
+    - to fire this problem, you need to run the bot, stop it, send 5 to 10 message, run it again.
+
+# Feature Goals
+
+  - [ ] Manually/ Move all implementations in GroupHelp to the bot (for better data and feature control)
