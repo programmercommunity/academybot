@@ -1,0 +1,17 @@
+{
+  "name": "academybot",
+  "version": "1.0.0",
+  "description": "",
+  "main": "bot.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Eymen Eid",
+  "license": "MIT",
+  "type": "module",
+  "dependencies": {
+    "axios": "^1.7.8",
+    "dotenv": "^16.4.5",
+    "telegraf": "^4.16.3"
+  }
+}
