@@ -35,5 +35,26 @@ export default class NewMemberHandler {
         await this.handleNewMember(ctx);
       }
     });
+
+    this.bot.command("start", async (ctx) => {
+      const userId = ctx.from.id;
+      const firstName = ctx.from.first_name;
+      const username = ctx.from.username || `user${userId}`;
+
+      let user = await User.findOne({ userId });
+      if (!user) {
+        user = new User({
+          userId,
+          firstName,
+          username,
+          joinedAt: new Date(),
+          lastActiveAt: new Date(),
+        });
+        await user.save();
+        console.log(`New user added: ${username}`);
+      }
+
+      await ctx.reply(`Hi ${firstName}, welcome to the bot! 🎉`);
+    });
   }
 }
