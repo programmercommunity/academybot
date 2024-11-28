@@ -1,4 +1,4 @@
-import { User } from "../models/User.js";
+import { saveUser } from "../helpers/saveUser.js";
 
 export default class NewMemberHandler {
   constructor(bot) {
@@ -6,25 +6,27 @@ export default class NewMemberHandler {
   }
 
   async handleNewMember(ctx) {
-    const newMember = ctx.update.chat_member.new_chat_member.user;
-    const userId = newMember.id;
-    const firstName = newMember.first_name;
-    const username = newMember.username || `user${userId}`;
+    console.log(ctx.update.chat_member.new_chat_member.user);
+    return;
+    // const newMember = ctx.update.chat_member.new_chat_member.user;
+    // const userId = newMember.id;
+    // const firstName = newMember.first_name;
+    // const username = newMember.username || `user${userId}`;
 
-    let user = await User.findOne({ userId });
-    if (!user) {
-      user = new User({
-        userId,
-        firstName,
-        username,
-        joinedAt: new Date(),
-        lastActiveAt: new Date(),
-      });
-      await user.save();
-      console.log(`New user added: ${username}`);
-    }
+    // let user = await User.findOne({ userId });
+    // if (!user) {
+    //   user = new User({
+    //     userId,
+    //     firstName,
+    //     username,
+    //     joinedAt: new Date(),
+    //     lastActiveAt: new Date(),
+    //   });
+    //   await user.save();
+    //   console.log(`New user added: ${username}`);
+    // }
 
-    await ctx.reply(`Welcome, ${firstName}! Glad to have you here. 🎉`);
+    // await ctx.reply(`Welcome, ${firstName}! Glad to have you here. 🎉`);
   }
 
   register() {
@@ -37,23 +39,8 @@ export default class NewMemberHandler {
     });
 
     this.bot.command("start", async (ctx) => {
-      const userId = ctx.from.id;
-      const firstName = ctx.from.first_name;
-      const username = ctx.from.username || `user${userId}`;
-
-      let user = await User.findOne({ userId });
-      if (!user) {
-        user = new User({
-          userId,
-          firstName,
-          username,
-          joinedAt: new Date(),
-          lastActiveAt: new Date(),
-        });
-        await user.save();
-        console.log(`New user added: ${username}`);
-      }
-
+      saveUser(ctx.from, ctx.api);
+      console.log(ctx.auth);
       await ctx.reply(`Hi ${firstName}, welcome to the bot! 🎉`);
     });
   }

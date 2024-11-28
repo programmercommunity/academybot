@@ -3,23 +3,32 @@ import { connectDB } from "./utils/database.js";
 import MessageHandler from "./modules/MessageHandler.js";
 import NewMemberHandler from "./modules/NewMemberHandler.js";
 import CommandManager from "./modules/CommandHandler.js";
+import MiddlewareManager from "./middlewares/MiddlewareManager.js";
+import { authenticate } from "./middlewares/AuthenticateMiddleware.js";
+
 
 export class BotManager {
   constructor(token) {
     this.bot = new Bot(token);
+    this.middlewareManager = new MiddlewareManager(this.bot);
     this.modules = [
-        new CommandManager(this.bot),
-        new MessageHandler(this.bot),
-        new NewMemberHandler(this.bot)
+      new CommandManager(this.bot),
+      new NewMemberHandler(this.bot),
     ];
   }
 
+  registerMiddlewares() {
+    this.middlewareManager.use(authenticate);
+    this.middlewareManager.attach();
+  }
+
   registerModules() {
-    this.modules.forEach((module) => module.register()); // changed that in command handler already
+    this.modules.forEach((module) => module.register());
   }
 
   async start() {
-    await connectDB(); // Connect to MongoDB
+    await connectDB();
+    this.registerMiddlewares();
     this.registerModules();
 
     this.bot.start();

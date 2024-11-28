@@ -12,10 +12,11 @@ const invitationLinkSchema = new mongoose.Schema({
 });
 
 const userSchema = new mongoose.Schema({
-  userId: { type: Number, required: true, unique: true },
+  userUid: { type: String, required: true, unique: true },
+  telegramId: { type: Number, unique: true },
   firstName: { type: String, required: true },
   lastName: { type: String },
-  username: { type: String, unique: true },
+  username: { type: String },
   headline: { type: String },
   techs: { type: [String] }, // Array of technologies
   github: { type: String },
@@ -25,11 +26,12 @@ const userSchema = new mongoose.Schema({
   website: { type: String },
   behance: { type: String },
   figma: { type: String },
-  languageCode: { type: String, required: true },
+  languageCode: { type: String },
   joinedAt: { type: Date, default: Date.now },
   lastActiveAt: { type: Date, default: Date.now },
   isBot: { type: Boolean, default: false },
   profilePhoto: { type: String },
+  userPhotos: { type: Object },
   status: {
     type: String,
     enum: ["member", "admin", "owner"],
