@@ -41,7 +41,7 @@ export default class NewMemberHandler {
     this.bot.command("start", async (ctx) => {
       saveUser(ctx.from, ctx.api);
       console.log(ctx.auth);
-      await ctx.reply(`Hi ${firstName}, welcome to the bot! 🎉`);
+      // await ctx.reply(`Hi ${firstName}, welcome to the bot! 🎉`);
     });
   }
 }

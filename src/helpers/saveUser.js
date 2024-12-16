@@ -27,7 +27,6 @@ export const saveUser = async (ctx, api) => {
 			lastActiveAt: new Date(),
 		});
 		await user.save();
-		console.log(`New user added: ${username}`);
 	}
 
 	return user;
