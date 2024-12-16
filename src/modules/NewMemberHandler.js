@@ -6,7 +6,7 @@ export default class NewMemberHandler {
   }
 
   async handleNewMember(ctx) {
-    console.log(ctx.update.chat_member.new_chat_member.user);
+    // console.log(ctx.update.chat_member.new_chat_member.user);
     return;
     // const newMember = ctx.update.chat_member.new_chat_member.user;
     // const userId = newMember.id;
@@ -40,8 +40,8 @@ export default class NewMemberHandler {
 
     this.bot.command("start", async (ctx) => {
       saveUser(ctx.from, ctx.api);
-      console.log(ctx.auth);
-      // await ctx.reply(`Hi ${firstName}, welcome to the bot! 🎉`);
+      // console.log(ctx.auth);
+      await ctx.reply(`Hi ${firstName}, welcome to the bot! 🎉`);
     });
   }
 }
