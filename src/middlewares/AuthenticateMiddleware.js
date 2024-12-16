@@ -11,7 +11,6 @@ export const authenticate = async (ctx, next) => {
     ctx.auth = saveUser(ctx.from, ctx.api);;
     await next();
   } catch (error) {
-    console.error("Authentication error:", error);
-    ctx.reply("An error occurred during authentication.");
+    log.error("Authentication error: " + error + " ::: " + ctx.from?.id);
   }
 };
