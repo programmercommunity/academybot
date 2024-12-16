@@ -1,4 +1,5 @@
 import HelloCommand from "../commands/HelloCommand.js";
+import ProfileCommand from "../commands/ProfileCommand.js";
 import BaseCommand from "../commands/BaseCommand.js";
 
 export default class CommandHandler {
@@ -6,6 +7,7 @@ export default class CommandHandler {
     this.bot = bot;
     this.commands = [
       new HelloCommand(),
+      new ProfileCommand(),
     ];
   }
 
