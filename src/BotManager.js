@@ -5,6 +5,7 @@ import NewMemberHandler from "./modules/NewMemberHandler.js";
 import CommandManager from "./modules/CommandHandler.js";
 import MiddlewareManager from "./middlewares/MiddlewareManager.js";
 import { authenticate } from "./middlewares/AuthenticateMiddleware.js";
+import { messageCounter } from "./middlewares/MessageCounterMiddleware.js";
 
 
 export class BotManager {
@@ -19,6 +20,7 @@ export class BotManager {
 
   registerMiddlewares() {
     this.middlewareManager.use(authenticate);
+    this.middlewareManager.use(messageCounter);
     this.middlewareManager.attach();
   }
 
