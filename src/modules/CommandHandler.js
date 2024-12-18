@@ -1,3 +1,5 @@
+import IdCommand from "../commands/IdCommand.js";
+import SayCommand from "../commands/SayCommand.js";
 import HelloCommand from "../commands/HelloCommand.js";
 import ProfileCommand from "../commands/ProfileCommand.js";
 import BaseCommand from "../commands/BaseCommand.js";
@@ -8,6 +10,8 @@ export default class CommandHandler {
     this.commands = [
       new HelloCommand(),
       new ProfileCommand(),
+      new IdCommand(),
+      new SayCommand(),
     ];
   }
 
