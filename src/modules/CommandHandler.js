@@ -30,7 +30,6 @@ export default class CommandHandler {
         } else {
           var args = messageText.replace(/^\/\S+\s*/, "");
         }
-        console.log(args);
         await command.execute(ctx, args);
       });
       console.log(`Command registered: ${command.name}`);

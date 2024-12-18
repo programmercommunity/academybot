@@ -32,9 +32,19 @@ const userSchema = new mongoose.Schema({
   isBot: { type: Boolean, default: false },
   profilePhoto: { type: String },
   userPhotos: { type: Object },
+  /**
+   * Owner
+   * Admin
+   * Helper Admin
+   * Developer (can control the bot, role is developing the bot/community/academy for
+   * Pro Programmer (an exprienced programmer who knows the academy just)
+   * Programmer (verified that he is a programmer)
+   * Special Member (just someone who isn't spam)
+   * Member (default)
+  */
   status: {
     type: String,
-    enum: ["member", "admin", "owner"],
+    enum: ["owner", "co-owner", "admin", "co-admin", "developer", "pro-programmer", "programmer", "special-member", "member"],
     default: "member",
   },
   bio: { type: String },

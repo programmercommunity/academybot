@@ -7,7 +7,7 @@ export const saveUser = async (ctx, api) => {
 
 	if (!user) {
 		const userUid = uuidv4();
-		const firstName = ctx.first_name;
+		const firstName = ctx.first_name || "Unknown";
 		const username = ctx.username || `user${telegramId}`;
 		const languageCode = ctx.language_code || "en";
 		const isBot = ctx.is_bot || false;

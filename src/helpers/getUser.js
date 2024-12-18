@@ -1,18 +1,26 @@
 import { User } from "../models/User.js";
+import { saveUser } from "../helpers/saveUser.js";
 import axios from "axios";
 import log from "./logger.js";
 
+// ctx !== null : findOrSave
 export const getUser = async (telegramId, ctx = null) => {
   let user = await User.findOne({ telegramId });
 
-  if (!user) {
-    return false;
+  if (ctx) {
+    var from = ctx.message.reply_to_message ? ctx.message.reply_to_message.from : ctx.from;
+    if (!user) {
+      return saveUser(from, ctx.api);
+    }
   }
+  // else if (!ctx){
+  //   return false;
+  // }
 
   if (ctx) {
     const updatedUserData = {
-      firstName: ctx.from.first_name || user.firstName,
-      username: ctx.from.username || user.username,
+      firstName: from.first_name || user.firstName,
+      username: from.username || user.username,
     };
 
     if (

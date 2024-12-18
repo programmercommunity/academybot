@@ -1,9 +1,10 @@
->               🪪 Profile
+<pre> 🪪 Profile </pre>
 
-👤 **Name**: {{name}}
-📧 **Username**: {{username}}
-🗣️ **Language**: {{language}}
+👤 <b>Name</b>: {{name}}
+📧 <b>Username</b>: {{mention}}
+🗣️ <b>Language</b>: {{language}}
 
->               #️⃣1️⃣ Community
-👑 **Role**: {{role}}
-🥇 **Points**: {{points}}
+<pre> #️⃣1️⃣ Community </pre>
+
+🏗️ <b>Role</b>: {{role}}
+🥇 <b>Points</b>: {{points}}

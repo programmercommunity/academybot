@@ -22,7 +22,7 @@ export class View {
         template = template.replace(regex, value || "");
       }
 
-      return template; // Return the rendered message
+      return template;
     } catch (error) {
       console.error(`Error rendering view: ${viewName}`, error);
       throw new Error("Failed to render view.");
