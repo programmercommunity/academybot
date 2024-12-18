@@ -1,11 +1,13 @@
 import BaseCommand from "./BaseCommand.js";
+import { View } from "../helpers/view.js";
 
 export default class HelloCommand extends BaseCommand {
-  constructor() {
-    super("hello", "Say hello to the bot");
+  constructor(name = "hello", description = "Say hello to the bot") {
+    super(name, description);
   }
 
-  async execute(ctx) {
-    await ctx.reply("Hello! How can I help you?");
+  async execute(ctx, args = []) {
+    const helloMessage = await View.render("hello");
+    await ctx.reply(helloMessage);
   }
 }
